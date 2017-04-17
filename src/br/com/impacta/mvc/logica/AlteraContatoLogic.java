@@ -13,60 +13,27 @@ import br.com.impacta.agenda.servlet.ContatoDao;
 
 public class AlteraContatoLogic implements Logica {
 
+	@Override
 	public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
-		String tipo = req.getParameter("paramAltera");
-		if (tipo.equals("altera")) {
-			return this.alterar(req, res);
-
-		} else {
-
-			return this.carregar(req, res);
-		}
-	}
-
-	private String carregar(HttpServletRequest req, HttpServletResponse res) {
 		Contato contato = new Contato();
-		int id = Integer.parseInt(req.getParameter("id"));
-
-		ContatoDao dao = new ContatoDao();
-		contato = dao.pesquisa(id);
-
-		req.setAttribute("nome", contato.getNome());
-		req.setAttribute("endereco", contato.getEndereco());
-		req.setAttribute("email", contato.getEmail());
-
-		String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(contato.getDataNascimento().getTime());
-
-		req.setAttribute("dataNascimento", dataFormatada);
-
-		return "altera-contato.jsp";
-
-	}
-
-	private String alterar(HttpServletRequest req, HttpServletResponse res) throws ParseException {
-		// TODO Auto-generated method stub
-		Contato contato = new Contato();
-		long id = Long.parseLong(req.getParameter("id"));
-		contato.setId(id);
 		contato.setNome(req.getParameter("nome"));
-		contato.setEndereco(req.getParameter("endereco"));
+		contato.setId(Long.parseLong(req.getParameter("id")));
 		contato.setEmail(req.getParameter("email"));
-
-		String dataEmTexto = req.getParameter("dataNascimento");
-		Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dataEmTexto);
-		Calendar dataNascimento = Calendar.getInstance();
-		dataNascimento.setTime(date);
-
+		contato.setEndereco(req.getParameter("endereco"));
+		Calendar dataNascimento = null;
+		try {
+			Date date = new SimpleDateFormat("dd/MM/yyyy").parse(req.getParameter("dataNascimento"));
+			dataNascimento = Calendar.getInstance();
+			dataNascimento.setTime(date);
+		} catch (ParseException e) {
+			System.out.println("Erro de conversão da data");
+		}
 		contato.setDataNascimento(dataNascimento);
-		
 
-		
-		ContatoDao dao = new ContatoDao();
-		dao.altera(contato);
+		ContatoDao contatoDao = new ContatoDao();
 
+		contatoDao.altera(contato);
 		return "mvc?logica=ListaContatosLogic";
 
 	}
-
 }

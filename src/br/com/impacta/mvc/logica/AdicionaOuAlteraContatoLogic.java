@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.impacta.agenda.servlet.Contato;
 import br.com.impacta.agenda.servlet.ContatoDao;
 
-
-public class AdicionaContatoLogic implements Logica{
+public class AdicionaOuAlteraContatoLogic implements Logica{
 
 	@Override
 	public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		Contato contato = new Contato();
+		
 		contato.setNome(req.getParameter("nome"));
 		contato.setEmail(req.getParameter("email"));
 		contato.setEndereco(req.getParameter("endereco"));
@@ -30,11 +30,17 @@ public class AdicionaContatoLogic implements Logica{
 		}
 		contato.setDataNascimento(dataNascimento);
 
-
 		ContatoDao contatoDao = new ContatoDao();
 		
+		if(!req.getParameter("id").equals("0")){
+			contato.setId(Long.parseLong(req.getParameter("id")));
+			System.out.println("Alterando Contato "+ contato.getNome());
+			contatoDao.altera(contato);
+		}
+		else{		
+			System.out.println("Adicionando Contato "+ contato.getNome());
 		contatoDao.adiciona(contato);
-	
+		}
 		return "mvc?logica=ListaContatosLogic";
 	}
 
