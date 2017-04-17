@@ -1,10 +1,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:import url="cabecalho.jsp" />
-<h2>
+<h4 class="text-center">
 	<a href="mvc?logica=CarregaContatoLogic"> + Novo Contato</a>
-</h2>
-<table>
+</h4>
+<table class="table table-striped">
+
+	<tr>
+	<thead>
+		<th>Nome</th>
+		<th>Email</th>
+		<th>Endereço</th>
+		<th>Data de Nascimento</th>
+		<th>Remover</th>
+		<th>Alterar</th>
+	</thead>
+	</tr>
+
 	<!-- percorre contatos montando as linhas da tabela -->
 	<c:forEach var="contato" items="${contatos}">
 		<tr>
