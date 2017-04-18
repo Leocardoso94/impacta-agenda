@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 18-Abr-2017 às 01:25
+-- Generation Time: 18-Abr-2017 às 02:33
 -- Versão do servidor: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -47,7 +47,26 @@ INSERT INTO `contatos` (`id`, `nome`, `email`, `endereco`, `dataNascimento`) VAL
 (7, 'Leonardo Cardoso', 'leonardo@uol.com', 'Av Rudge', '1994-10-04'),
 (9, 'Joao', 'AdicionaLogic@caelum', 'Av Rudge', '1830-10-20'),
 (12, 'Teste', 'leonardo@uol.com', 'Av Morumbi', '2016-04-13'),
-(13, 'Leonardo Cardoso', 'leonardo@uol.com', 'Av Rudge', '1900-04-24');
+(14, 'Leonardo Cardoso', 'leonardo@uol.com', 'Av Rudge', '1900-04-24');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `login` varchar(255) NOT NULL,
+  `senha` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `login`, `senha`) VALUES
+(1, 'teste', 'teste');
 
 --
 -- Indexes for dumped tables
@@ -60,6 +79,12 @@ ALTER TABLE `contatos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -67,7 +92,12 @@ ALTER TABLE `contatos`
 -- AUTO_INCREMENT for table `contatos`
 --
 ALTER TABLE `contatos`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
