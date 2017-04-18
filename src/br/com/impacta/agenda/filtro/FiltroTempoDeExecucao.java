@@ -23,5 +23,7 @@ public class FiltroTempoDeExecucao implements Filter {
 		String parametros = ((HttpServletRequest) request).getParameter("logica");
 		System.out.println("Tempo da requisicao de " + uri + "?logica=" + parametros + " demorou (ms): "
 				+ (tempoFinal - tempoInicial));
+		
+		
 	}
 }
