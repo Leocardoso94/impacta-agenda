@@ -2,7 +2,7 @@
 <c:import url="cabecalho.jsp" />
 
 <form action="mvc" class="center-block">
-	<input value="ValidaLoginLogic" name="logica" readonly type="hidden">
+<input type="hidden" name="logica" value="ValidaLoginLogic" />
 	<div class="form-group">
 		<label for="login">Login:</label> <input type="text" id="login"
 			class="form-control" name="login" />

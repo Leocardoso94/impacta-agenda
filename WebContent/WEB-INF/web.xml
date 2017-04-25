@@ -7,9 +7,9 @@
 	<welcome-file-list>
 		<welcome-file>/bemvindo.jsp</welcome-file>
 	</welcome-file-list>
+
 	<error-page>
-		<exception-type>java.lang.Exception
-		</exception-type>
+		<exception-type>java.lang.Exception</exception-type>
 		<location>/erro.html</location>
 	</error-page>
 	<error-page>
